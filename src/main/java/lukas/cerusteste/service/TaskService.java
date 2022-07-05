@@ -21,6 +21,10 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+    public Task getByName(String taskName){
+        return taskRepository.findByName(taskName);
+    }
+
     public Task addTask(Task taskToBeAdded) {
         return taskRepository.save(taskToBeAdded);
     }
