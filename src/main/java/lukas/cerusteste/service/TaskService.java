@@ -33,12 +33,13 @@ public class TaskService {
 
     public Task addTask(Task taskToBeAdded) {
         treatDateAndDone(taskToBeAdded);
+        System.out.println(taskToBeAdded.toString());
         return taskRepository.save(taskToBeAdded);
     }
 
     private void treatDateAndDone(Task taskToBeAdded) {
         if (taskToBeAdded.getCreationDate() == null) taskToBeAdded.setCreationDate(LocalDateTime.now());
-        if (taskToBeAdded.isDone() == null) taskToBeAdded.setDone("0");
+        if (taskToBeAdded.getDone() == null) taskToBeAdded.setDone("0");
     }
 
     public Task updateTask(Task taskToBeUpdated) {

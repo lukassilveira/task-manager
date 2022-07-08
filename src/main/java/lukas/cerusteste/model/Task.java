@@ -16,17 +16,17 @@ public class Task implements Serializable {
     private String name;
     private String description;
 
-    private String isDone;
+    private String done;
     private LocalDateTime creationDate;
 
     public Task() {
     }
 
-    public Task(Long id, String name, String description, String isDone, LocalDateTime creationDate) {
+    public Task(Long id, String name, String description, String done, LocalDateTime creationDate) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.isDone = isDone;
+        this.done = done;
         this.creationDate = creationDate;
     }
 
@@ -54,12 +54,12 @@ public class Task implements Serializable {
         this.description = description;
     }
 
-    public String isDone() {
-        return isDone;
+    public String getDone() {
+        return done;
     }
 
     public void setDone(String done) {
-        isDone = done;
+        this.done = done;
     }
 
     public LocalDateTime getCreationDate() {
@@ -76,7 +76,7 @@ public class Task implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", isDone=" + isDone +
+                ", done=" + done +
                 ", creationDate=" + creationDate +
                 '}';
     }

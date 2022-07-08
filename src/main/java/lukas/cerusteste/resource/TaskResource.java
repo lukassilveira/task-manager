@@ -36,12 +36,10 @@ public class TaskResource {
         System.out.println(taskToBeUpdated.toString());
         Optional<Task> task = taskService.getById(taskToBeUpdated.getId());
         Task _task = task.get();
-        if (task.isPresent()) {
-            _task.setDone(taskToBeUpdated.isDone());
-            _task.setName(taskToBeUpdated.getName());
-            _task.setDescription(taskToBeUpdated.getDescription());
-            taskService.updateTask(_task);
-        }
+        _task.setDone(taskToBeUpdated.getDone());
+        _task.setName(taskToBeUpdated.getName());
+        _task.setDescription(taskToBeUpdated.getDescription());
+        taskService.updateTask(_task);
         return new ResponseEntity<>(_task, HttpStatus.OK);
     }
 
