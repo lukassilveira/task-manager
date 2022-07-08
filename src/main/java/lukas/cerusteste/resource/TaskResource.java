@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/task")
 public class TaskResource {
@@ -31,8 +33,16 @@ public class TaskResource {
 
     @PutMapping("/update")
     public ResponseEntity<Task> updateTask(@RequestBody Task taskToBeUpdated) {
-        Task task = taskService.addTask(taskToBeUpdated);
-        return new ResponseEntity<>(task, HttpStatus.OK);
+        System.out.println(taskToBeUpdated.toString());
+        Optional<Task> task = taskService.getById(taskToBeUpdated.getId());
+        Task _task = task.get();
+        if (task.isPresent()) {
+            _task.setDone(taskToBeUpdated.isDone());
+            _task.setName(taskToBeUpdated.getName());
+            _task.setDescription(taskToBeUpdated.getDescription());
+            taskService.updateTask(_task);
+        }
+        return new ResponseEntity<>(_task, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{taskToBeDeletedId}")
